@@ -1,0 +1,37 @@
+@import 'themes-vars.module.scss';
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.ant-form-item {
+    .login-form-button {
+        width: 100%;
+        border-radius: 15px;
+        background-color: #8b008b;
+    }
+    .login-form-button:active {
+        background-color: #8b008b !important;
+    }
+    .login-form-button:hover {
+        background-color: #8b008b !important;
+    }
+
+    .ant-input-affix-wrapper {
+        border:none;
+        border-radius: 0;
+        border-bottom: 1px solid #b5b5b5;
+        padding: 10px 0px;
+    }
+    .ant-input-affix-wrapper:hover {
+        border-color: #b5b5b5;
+    }
+    .ant-input-affix-wrapper:focus {
+        border-color: #b5b5b5;
+    }
+    .ant-input-affix-wrapper-focused {
+        border-color: #b5b5b5;
+        box-shadow: none ;
+    }
+}
