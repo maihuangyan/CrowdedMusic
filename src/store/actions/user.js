@@ -1,5 +1,5 @@
 import useJwt from "utils/jwt/useJwt";
-import { SET_USER } from "store/actionType";
+import { SET_USER , CLEAR_USER} from "store/actionType";
 
 // ** Get all Data
 export const getAllData = () => {
@@ -58,6 +58,15 @@ export const getUser = (param) => {
     dispatch({
       type: SET_USER,
       payload: param,
+    });
+  };
+};
+
+// ** Get User
+export const clearUser = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: CLEAR_USER,
     });
   };
 };

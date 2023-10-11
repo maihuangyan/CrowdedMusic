@@ -5,33 +5,86 @@ body {
     padding: 0;
 }
 
-.ant-form-item {
-    .login-form-button {
-        width: 100%;
-        border-radius: 15px;
-        background-color: #8b008b;
+.ant-form {
+    
+    .ant-form-item {
+
+        .login-form-button {
+            height: 50px;
+            padding: 0 30px;
+            border-radius: 30px;
+            margin-right: 20px;
+        }
+
+        .ant-input-affix-wrapper {
+            border: none;
+            border-radius: 0;
+            padding: 10px 0px;
+        }
+
+        .ant-input-affix-wrapper:hover {
+            border-color: #b5b5b5;
+        }
+
+        .ant-input-affix-wrapper:focus {
+            border-color: #b5b5b5;
+        }
+
+        .ant-input-affix-wrapper-focused {
+            border-color: #b5b5b5;
+            box-shadow: none;
+        }
     }
-    .login-form-button:active {
-        background-color: #8b008b !important;
-    }
-    .login-form-button:hover {
-        background-color: #8b008b !important;
+    .ant-form-item:first-child{
+        margin-bottom: -5px;
     }
 
-    .ant-input-affix-wrapper {
-        border:none;
-        border-radius: 0;
-        border-bottom: 1px solid #b5b5b5;
-        padding: 10px 0px;
+    .login-form-item{
+        .ant-input-affix-wrapper{
+            border-radius: 8px;
+        }
+        .ant-input-prefix{
+            padding: 10px 20px;
+        }
+        .ant-input{
+            border-radius: 8px;
+        }
     }
-    .ant-input-affix-wrapper:hover {
-        border-color: #b5b5b5;
+}
+
+
+.ant-checkbox {
+    border-radius: 50%;
+
+    .ant-checkbox-inner {
+        border-radius: 8px;
+        width: 18px;
+        height: 18px;
     }
-    .ant-input-affix-wrapper:focus {
-        border-color: #b5b5b5;
+}
+
+
+.ant-checkbox-checked {
+    border-radius: 50%;
+
+    .ant-checkbox-inner {
+        background-color: #00c853;
+        border-color: #00c853;
     }
-    .ant-input-affix-wrapper-focused {
-        border-color: #b5b5b5;
-        box-shadow: none ;
+}
+
+.ant-checkbox-checked:after {
+    border-radius: 50%;
+    border-color: #00c853;
+}
+
+@media screen and (max-width:1000px) {
+    .ant-form{
+        .ant-form-item {
+            .login-form-button {
+                margin-right: 10px;
+                padding: 0 20px;
+            }
+        }
     }
 }

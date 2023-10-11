@@ -6,6 +6,8 @@ import {
 } from '@mui/material'
 import NavTabs from 'ui-component/navTabs';
 import Trending from './Trending';
+import News from './News';
+import TimeLing from './TimeLing';
 
 export default function Home() {
 
@@ -20,7 +22,7 @@ export default function Home() {
                 value={value}
                 handleChange={handleChange}
                 label={["NEWS", "TIMELINE", "TRENDING"]}
-                component={["1","2",<Trending />]}
+                component={[<News />,<TimeLing />,<Trending />]}
             />
         </>
     )

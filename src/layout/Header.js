@@ -14,11 +14,14 @@ import { IconSearch, IconMenu2, IconMail } from "@tabler/icons-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import ClientAvatar from 'ui-component/ClientAvatar';
 import imgSrc from "assets/images/WechatIMG1575.jpg"
+import { clearUser } from 'store/actions/user';
+import { useDispatch } from 'react-redux';
 
 export default function Header() {
 
     const navigate = useNavigate()
     const location = useLocation()
+    const dispatch = useDispatch()
 
     const [showMenu, setShowMenu] = useState(false);
 
@@ -34,7 +37,6 @@ export default function Header() {
         if (location.pathname.split("/")[1].split("_").length > 1) {
             return location.pathname.split("/")[1].split("_").join(" ")
         } else {
-
             return location.pathname.split("/")[1]
         }
     }, [location.pathname])
@@ -42,7 +44,12 @@ export default function Header() {
     const tabsMenu = (text) => {
         const handleText = text.toLowerCase().split(" ")
         if (handleText.length > 1) {
-            navigate(`/${handleText.join("_")}`)
+
+            if (handleText.join("_") == "sign_out") {
+                dispatch(clearUser())
+            } else {
+                navigate(`/${handleText.join("_")}`)
+            }
         } else {
             navigate(`/${text.toLowerCase()}`)
         }
@@ -55,7 +62,7 @@ export default function Header() {
             onClick={() => handleCloseMenu()}
             onKeyDown={() => handleCloseMenu()}
         >
-            <Box sx={{display:"flex",justifyContent:"center", alignItems:"center",p:12 , background:`url(${imgSrc}) center no-repeat`, backgroundSize:"100% 100%"}}>
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 12, background: `url(${imgSrc}) center no-repeat`, backgroundSize: "100% 100%" }}>
                 <ClientAvatar src={imgSrc} size={80} name={"aaa"} />
             </Box>
             <List>

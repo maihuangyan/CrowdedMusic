@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import routes from "../routes/routes";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,16 +19,22 @@ const Layout = () => {
             navigate('/home')
         }
 
-        if(location.pathname === "/"){
+        if (location.pathname === "/") {
             navigate('/home')
         }
-    }, [navigate, token, location.pathname])
+    }, [token, location.pathname])
+
+    const isLogin = useMemo(() => {
+        return location.pathname == "/login"
+    }, [location.pathname])
     return (
         <>
             <Box sx={{ overflow: "hidden" }}>
-                <Header></Header>
+                {
+                    !isLogin && <Header></Header>
+                }
                 <main>
-                    <Box sx={{overflowY:"auto",overflowX:"hidden" , mt:-1}}>
+                    <Box sx={{ overflowY: "auto", overflowX: "hidden", mt: -1 }}>
                         <Routes>
                             {
                                 routes.map((item) => <Route key={item.path} path={item.path} element={<item.element></item.element>}></Route>)

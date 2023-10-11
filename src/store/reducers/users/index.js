@@ -10,7 +10,7 @@ const initState = {
 const persistConfig = {
     key: "user",
     storage,
-    whitelist: ["user", ""], // place to select which state you want to persist
+    whitelist: ["user",], // place to select which state you want to persist
 };
 
 const userReducer = (state = initState, action) => {
@@ -19,17 +19,10 @@ const userReducer = (state = initState, action) => {
         case SET_USER:
             return { ...state, user: payload }
         case CLEAR_USER:
-            return {
-                ...state, user: {
-                    id: 1,
-                    username: "",
-                    role: "",
-                    token: "",
-                }
-            }
+            return { ...state, user: {} }
         default:
             return state
     }
 }
 
-export default persistReducer(persistConfig,userReducer)
+export default persistReducer(persistConfig, userReducer)

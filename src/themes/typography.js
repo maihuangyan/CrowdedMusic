@@ -34,7 +34,7 @@ export default function themeTypography(theme) {
     h1: {
       fontSize: "2.125rem",
       color: theme.heading,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     subtitle1: {
       fontSize: "0.875rem",
@@ -60,7 +60,7 @@ export default function themeTypography(theme) {
       fontSize: "0.875rem",
       fontWeight: 400,
       lineHeight: "1.334em",
-      color: theme.textDark,
+      color: "#9e9e9e",
     },
     button: {
       textTransform: "capitalize",
