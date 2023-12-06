@@ -101,14 +101,24 @@ export default function componentStyleOverrides(theme) {
     },
     MuiOutlinedInput: {
       styleOverrides: {
+        border: "none",
+
         root: {
-          background: bgColor,
-          borderRadius: "30px",
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: theme.colors?.grey900,
+          background: "#333",
+          borderRadius: "8px",
+          border: "none",
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#dd4377",
+            border: "none",
+
           },
-          "&:hover $notchedOutline": {
-            borderColor: theme.colors?.grey700,
+          "& .MuiOutlinedInput-notchedOutline": {
+            border: "none",
+          },
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#dd4377",
+            border: "none",
+
           },
           "&.MuiInputBase-multiline": {
             padding: 1,
@@ -118,7 +128,7 @@ export default function componentStyleOverrides(theme) {
           fontWeight: 500,
           background: bgColor,
           padding: "15.5px 14px",
-          borderRadius: "27px",
+          borderRadius: "8px",
           "&.MuiInputBase-inputSizeSmall": {
             padding: "10px 14px",
             "&.MuiInputBase-inputAdornedStart": {
@@ -130,7 +140,7 @@ export default function componentStyleOverrides(theme) {
           paddingLeft: 4,
         },
         notchedOutline: {
-          borderRadius: "30px",
+          borderRadius: "8px",
         },
       },
     },

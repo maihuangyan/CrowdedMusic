@@ -1,0 +1,127 @@
+.musicPlay {
+  .musicBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #000;
+    border-radius: 8px;
+    padding: 30px;
+    position: relative;
+
+    .musicMain {
+      display: flex;
+      position: relative;
+
+      .musicImage {
+        width: 95px;
+        height: 95px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        margin-right: 50px;
+        animation: fadenum 60s infinite;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+
+        @keyframes fadenum {
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      }
+
+      .musicInfo {
+        min-width: 195px;
+        margin-right: 10px;
+
+        .musicDesc {
+          margin-top: 5px;
+          margin-bottom: 5px;
+          color: #fff;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        .operationBar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 195px;
+
+          .volume {
+            width: 80px;
+
+            .ant-slider-rail {
+              background: rgba(255, 255, 255, 0.2);
+            }
+          }
+        }
+      }
+
+      .musicTime {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-size: 13px;
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 4px;
+      }
+    }
+
+    .progressBar {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+
+      .ant-slider {
+        margin: 0;
+
+        .ant-slider-rail {
+          background: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+  }
+
+  .musicList {
+    list-style: none;
+    padding: 0;
+    background-color: #292929;
+    box-sizing: none;
+    border: 1px solid;
+    border-color: rgba(152, 152, 152, 0.2);
+    border-top: none;
+    border-bottom: none;
+
+    li {
+      padding: 8px;
+      border-bottom: 1px solid;
+      border-color: rgba(152, 152, 152, 0.2);
+      cursor: pointer;
+      color: grey;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      figure {
+        color: #fff;
+      }
+
+      figcaption {
+        padding: 0;
+        font-size: 0.675em;
+      }
+    }
+
+    .active {
+      background-color: #1a1a1a;
+    }
+
+    li:hover {
+      background-color: #1a1a1a;
+    }
+  }
+}

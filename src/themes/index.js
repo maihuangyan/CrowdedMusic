@@ -43,6 +43,15 @@ export const theme = (customization) => {
         },
       },
     },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 768,
+        md: 1024,
+        xl: 1280,
+        lg: 1600,
+      },
+    },
     typography: themeTypography(themeOption),
   };
 

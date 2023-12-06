@@ -1,0 +1,216 @@
+.homePage {
+    font-size: 16px;
+
+    .slide3 {
+        .slick-prev {
+            left: 5%;
+            z-index: 1;
+        }
+
+        .slick-prev::before {
+            font-size: 0;
+        }
+
+        .slick-prev svg {
+            transition: 0.3s;
+        }
+
+        .slick-prev svg:hover {
+            stroke: #dd4377;
+            transition: 0.3s;
+        }
+
+        .slick-next {
+            right: 5%;
+        }
+
+        .slick-next::before {
+            font-size: 0;
+        }
+
+        .slick-next svg {
+            transition: 0.3s;
+        }
+
+        .slick-next svg:hover {
+            stroke: #dd4377;
+            transition: 0.3s;
+
+        }
+    }
+
+    .slide1 {
+        margin-top: 20px;
+
+        .slick-prev {
+            left: -5%;
+            z-index: 1;
+        }
+
+        .slick-prev::before {
+            font-size: 0;
+        }
+
+        .slick-next {
+            right: -5%;
+        }
+
+        .slick-next::before {
+            font-size: 0;
+        }
+    }
+
+    .slide {
+        margin-bottom: -10px;
+        margin-top: -1px;
+
+        .slick-slide img {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .slick-prev {
+            left: 15%;
+            z-index: 1;
+        }
+
+        .slick-prev::before {
+            font-size: 0;
+        }
+
+        .slick-prev svg {
+            transition: 0.3s;
+        }
+
+        .slick-prev svg:hover {
+            stroke: #dd4377;
+            transition: 0.3s;
+        }
+
+        .slick-next {
+            right: 15%;
+        }
+
+        .slick-next::before {
+            font-size: 0;
+        }
+
+        .slick-next svg {
+            transition: 0.3s;
+        }
+
+        .slick-next svg:hover {
+            stroke: #dd4377;
+            transition: 0.3s;
+
+        }
+
+        .context {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding-top: 100px;
+
+            h3 {
+                font-size: 50px;
+                margin: 0;
+                text-transform: capitalize
+            }
+
+            h2 {
+                font-size: 100px;
+                margin: 0;
+                text-transform: capitalize;
+                text-align: center;
+            }
+
+            p {
+                max-width: 570px;
+                text-align: center;
+                font-size: 20px;
+                margin: 0;
+                margin-top: 40px;
+                text-transform: capitalize
+            }
+        }
+
+        .slick-dots {
+            bottom: 50px;
+
+            li button:before {
+                opacity: 1;
+                background: transparent;
+                color: rgba(0, 0, 0, 0.1);
+                border: 1px solid #fff;
+                border-radius: 50%;
+                width: 10px;
+                height: 10px;
+                line-height: 10px;
+            }
+
+            li.slick-active button:before {
+                background: #fff;
+                color: #fff;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .homePage .item-media-wrap{
+        height: 250px;
+    }
+}
+
+
+@media screen and (max-width:990px) {
+    .homePage .slide .context {
+        position: static;
+        background: #222;
+        padding-top: 50px;
+        padding-bottom: 80px;
+
+        h3 {
+            font-size: 40px;
+            margin: 0;
+            text-transform: capitalize
+        }
+
+        h2 {
+            font-size: 80px;
+            line-height: 70px;
+            margin: 0;
+            text-transform: capitalize
+        }
+
+        p {
+            max-width: 570px;
+            text-align: center;
+            font-size: 20px;
+            margin: 0;
+            text-transform: capitalize
+        }
+    }
+
+    .homePage .slide .slick-dots {
+        bottom: 40px;
+    }
+
+    .homePage .item-media-wrap{
+        height: 260px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .homePage .item-media-wrap{
+        height: 300px;
+    }
+}

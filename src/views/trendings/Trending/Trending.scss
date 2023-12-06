@@ -1,0 +1,492 @@
+.endpart {
+  padding: 30px 0;
+}
+
+/* mp3s-page-part */
+
+.mp3s-page-part > .row {
+  margin-left: -25px;
+  margin-right: -25px;
+}
+
+.mp3s-page-part > .row > [class*="col-"] {
+  padding-left: 25px;
+  padding-right: 25px;
+  margin: 0;
+}
+
+.mp3s-page-part h2 {
+  font-weight: 100;
+  font-size: 40px;
+  -webkit-transition: all 0.2s ease 0.1s;
+  -moz-transition: all 0.2s ease 0.1s;
+  -o-transition: all 0.2s ease 0.1s;
+  -ms-transition: all 0.2s ease 0.1s;
+  transition: all 0.2s ease 0.1s;
+}
+
+.mp3s-page-part .ipdchart {
+  position: relative;
+}
+
+.mp3s-page-part .ipdchart:hover .see-all-b {
+  opacity: 1;
+}
+
+.mp3s-page-part .ipdchart .see-all-b {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  letter-spacing: 11px;
+  -webkit-transition: all 0.2s ease 0.1s;
+  -moz-transition: all 0.2s ease 0.1s;
+  -o-transition: all 0.2s ease 0.1s;
+  -ms-transition: all 0.2s ease 0.1s;
+  transition: all 0.2s ease 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  opacity: 0;
+}
+
+.mp3s-page-part .ipdchart:hover h2 {
+  opacity: 0;
+}
+
+.bg-c:before {
+  background: #161616;
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  bottom: -20px;
+  right: 10px;
+}
+
+.navalist-a {
+  margin: 0;
+  padding: 0;
+  counter-reset: li;
+}
+
+.navalist-a li {
+  margin: 0 0 20px;
+  padding: 5px 80px 5px 110px;
+  position: relative;
+  list-style: none;
+  height: 80px;
+}
+
+.navalist-a li:hover img {
+  opacity: 0.8;
+}
+
+.navalist-a:not(.not-count) li:before {
+  counter-increment: li;
+  content: counter(li, decimal-leading-zero);
+  position: absolute;
+  vertical-align: middle;
+  top: 50%;
+  margin-top: -8px;
+  left: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-right: 0;
+  color: #bfbfbe;
+  text-align: center;
+  width: 30px;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.navalist-a li:after {
+  content: "";
+  padding: 5px;
+  clear: both;
+  width: 100%;
+  display: block;
+  left: 0;
+  margin-top: 0;
+  top: 100%;
+  position: absolute;
+  height: 1px;
+  border-bottom: 1px solid #2e2e2e9c;
+}
+
+.navalist-a li img {
+  width: 70px;
+  position: absolute;
+  left: 30px;
+  top: 5px;
+  border-radius: 5%;
+  opacity: 0.5;
+  transition: 0.2s all;
+}
+
+.navalist-a .info {
+  line-height: 21px;
+  width: 100%;
+  height: 100%;
+  display: table;
+  table-layout: fixed;
+}
+
+.info span {
+  display: block;
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navalist-a .vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.navalist-a .artist-name {
+  color: #bfbfbf;
+}
+
+.navalist-a .song-name {
+  font-weight: 700;
+  color: #fff;
+}
+
+.navalist-a .dur {
+  position: absolute;
+  right: 5px;
+  top: 4px;
+  height: 100%;
+  display: table;
+  color: #bfbfbf;
+}
+
+.navalist-a .dur span {
+  display: table-cell;
+  vertical-align: middle;
+  width: 80px;
+  padding-left: 24px;
+}
+
+.navalist-a .dur span svg {
+  position: absolute;
+  left: 0;
+  top: 40%;
+  bottom: 0;
+  cursor: pointer;
+}
+.navalist-a .dur span .add-playlist{
+    left: 90%;
+}
+
+/* titleb */
+
+.title-text {
+  margin-top: 20px;
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.title-text:hover .text-truncate {
+  opacity: 0;
+}
+
+.title-text:hover .see-all-b {
+  opacity: 1;
+}
+
+.title-text .text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  letter-spacing: 11px;
+  color: #7b7b7b;
+  font-size: 23px;
+  -webkit-transition: all 0.2s ease 0.1s;
+  -moz-transition: all 0.2s ease 0.1s;
+  -o-transition: all 0.2s ease 0.1s;
+  -ms-transition: all 0.2s ease 0.1s;
+  transition: all 0.2s ease 0.1s;
+}
+
+.title-text .see-all-b {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  letter-spacing: 11px;
+  -webkit-transition: all 0.2s ease 0.1s;
+  -moz-transition: all 0.2s ease 0.1s;
+  -o-transition: all 0.2s ease 0.1s;
+  -ms-transition: all 0.2s ease 0.1s;
+  transition: all 0.2s ease 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.title-text .see-all-b a,
+.ipdchart .see-all-b a {
+  color: #7b7b7b;
+  border: 3px solid #7b7b7b;
+  padding: 4px 12px;
+}
+
+.title-text .see-all-b a:hover,
+.ipdchart .see-all-b a {
+  color: #7b7b7b;
+}
+
+.titleb > .row > [class*="col-"] {
+  padding: 0 10px;
+  margin: 0;
+}
+
+/* .item-new */
+
+.item-new img {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+  height: auto;
+  border-top: 1px solid #313131;
+  border-left: 1px solid #313131;
+  border-right: 1px solid #313131;
+}
+
+.item-new img:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  content: "";
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 1;
+  transition: 0.2s all;
+}
+
+.item-new .caption {
+  background: #1a1a1a;
+  padding: 2px 5px;
+  border: 1px solid #313131;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+}
+
+.item-new .new-item-views {
+  font-size: 12px;
+}
+
+.item-new-album .caption {
+  background: #0a0707;
+  padding: 20px 15px 22px 15px;
+  text-align: center;
+  border-radius: 0 0 5px 5px;
+}
+
+.page_mainslider .slick-slide .caption {
+  font-size: 39px;
+  line-height: 39px;
+  text-align: center;
+  margin-top: -90px;
+}
+
+.page_mainslider .sliders .homeTopSlider .theslide {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page_mainslider .slick-slide img {
+  border-style: none;
+}
+
+.page_mainslider .homeTopSliderNav {
+  margin-top: 20px;
+}
+
+.sliders {
+  position: relative;
+}
+
+.sliders .prev {
+  position: absolute;
+  left: 0;
+  top: 20%;
+}
+
+.sliders .next {
+  position: absolute;
+  right: 0;
+  top: 20%;
+}
+
+.mp3s-page-part .item-new .caption > h3:first-child {
+  color: #fff;
+}
+
+.mp3s-page-part .item-new h3 {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #bababa;
+}
+
+.mp3s-page-part .row .item-new a {
+  color: #bababa;
+}
+
+.page_mainslider .titleb {
+  width: 100%;
+  padding: 0 40px;
+}
+
+.new-videos.new-videos-home .item-new-video h3 {
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.item-new-video {
+  max-width: 100%;
+  float: left;
+  position: relative;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.item-new-video:last-child {
+  margin-right: 0;
+}
+
+.item-new-video img {
+  max-width: 100%;
+  -webkit-transition: opacity 0.5s ease 0.1s;
+  -moz-transition: opacity 0.5s ease 0.1s;
+  -o-transition: opacity 0.5s ease 0.1s;
+  -ms-transition: opacity 0.5s ease 0.1s;
+  transition: opacity 0.5s ease 0.1s;
+}
+
+.item-new-video .caption {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 8px;
+}
+
+.item-new-video a {
+  color: #d8d8d8;
+}
+
+.item-new-video h3 {
+  font-size: 11px;
+  padding-left: 4px;
+  margin: 0;
+  line-height: 13px;
+  border-left: 4px solid #d8d8d8;
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+.item-new-video h3:first-child {
+  margin-bottom: 2px;
+  border-color: #862125;
+}
+
+.item-new-video:hover img {
+  opacity: 0.6;
+}
+
+.item-new-artist img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  webkit-transition: all 0.6s ease !important;
+  -moz-transition: all 0.6s ease !important;
+  -o-transition: all 0.6s ease !important;
+  -ms-transition: all 0.6s ease !important;
+  transition: all 0.6s ease !important;
+}
+
+.item-new-artist:hover img {
+  opacity: 0.6;
+}
+
+.fac {
+  align-items: center;
+  display: flex;
+}
+
+.item-new-artist .caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  background: hsla(0, 0%, 0%, 0.5) none repeat scroll 0 0;
+  border-radius: 50%;
+  box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.52);
+}
+
+.item-new-artist .caption h3 {
+  width: 100%;
+  text-align: center;
+  font-size: 21px;
+  margin: 0;
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #fff;
+  font-weight: 700;
+}
+
+.playlists .a-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.playlists .a-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.playlists span {
+  width: 100%;
+  text-align: center;
+  display: block;
+  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: #9c9c9c;
+  text-shadow: 0 1px 1px #000;
+  line-height: 30px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .page_mainslider .sliders .homeTopSliderNav {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .page_mainslider .sliders .homeTopSlider img {
+    // width: 100%;
+  }
+}

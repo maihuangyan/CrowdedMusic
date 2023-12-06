@@ -5,30 +5,158 @@ const Home = Loadable(lazy(() => import("views/home")));
 
 const routes = [
     {
-        path:'/home',
-        name:'home',
-        til:'首页',
-        element:Home,
-        hidden:false,
+        path: '/homepage',
+        name: 'home',
+        til: '首页',
+        element: Home,
+        hidden: false,
     },
     {
-        path:'/music',
-        name:'music',
-        til:'music',
-        element:Loadable(lazy(()=>import('views/music'))),
-        hidden:false,
+        path: '/music',
+        name: 'music',
+        til: 'music',
+        element: Loadable(lazy(() => import('views/music'))),
+        hidden: false,
+        children: [
+            {
+                path: '/music/albums',
+                name: 'albums',
+                til: 'albums',
+                element: Loadable(lazy(() => import('views/music/album'))),
+            },
+            {
+                path: '/music/single_album',
+                name: 'single_album',
+                til: 'single_album',
+                element: Loadable(lazy(() => import('views/music/single_album'))),
+            },
+        ]
     },
     {
-        path:'/login',
-        til:'登录',
-        element:Loadable(lazy(()=>import('views/login'))),
-        hidden:true,
+        path: '/trendings',
+        name: 'trendings',
+        til: 'trendings',
+        element: Loadable(lazy(() => import('views/trendings'))),
+        hidden: false,
+        children: [
+            {
+                path: '/trendings/trending',
+                name: 'trending',
+                til: 'trending',
+                element: Loadable(lazy(() => import('views/trendings/Trending'))),
+            },
+            {
+                path: '/trendings/about',
+                name: 'about',
+                til: 'about',
+                element: Loadable(lazy(() => import('views/trendings/about'))),
+            },
+            {
+                path: '/trendings/404',
+                name: '404',
+                til: '404',
+                element: Loadable(lazy(() => import('views/trendings/404'))),
+            },
+            {
+                path: '/trendings/comingsoon',
+                name: 'comingsoon',
+                til: 'comingsoon',
+                element: Loadable(lazy(() => import('views/trendings/Comingsoon'))),
+            },
+            {
+                path: '/trendings/events',
+                name: 'events',
+                til: 'events',
+                element: Loadable(lazy(() => import('views/trendings/Events'))),
+            },
+            {
+                path: '/trendings/faq',
+                name: 'FAQ',
+                til: 'FAQ',
+                element: Loadable(lazy(() => import('views/trendings/FAQ'))),
+            },
+            {
+                path: '/trendings/team',
+                name: 'team',
+                til: 'team',
+                element: Loadable(lazy(() => import('views/trendings/Team'))),
+            },
+            {
+                path: '/trendings/timetable',
+                name: 'timetable',
+                til: 'timetable',
+                element: Loadable(lazy(() => import('views/trendings/Timetable'))),
+            },
+        ]
     },
     {
-        path:'*',
-        til:'页面未找到',
-        element:Loadable(lazy(()=>import('views/404'))),
-        hidden:true,
+        path: '/shortcodes_widgets',
+        name: 'Shortcodes & Widgets',
+        til: 'Shortcodes & Widgets',
+        element: Loadable(lazy(() => import('views/shortcodes_widgets'))),
+        hidden: false,
+        children: [
+            {
+                path: '/shortcodes_widgets/Typography',
+                name: 'trending',
+                til: 'trending',
+                element: Loadable(lazy(() => import('views/shortcodes_widgets/Typography'))),
+            },
+        ]
+    },
+    {
+        path: '/searchPage',
+        til: 'searchPage',
+        element: Loadable(lazy(() => import('views/searchPage'))),
+        hidden: true,
+    },
+    {
+        path: '/my_playLst',
+        til: 'myPlayLst',
+        element: Loadable(lazy(() => import('views/MyPlayList'))),
+        hidden: true,
+        children: [
+            {
+                path: '/my_playLst',
+                til: 'playList',
+                element: Loadable(lazy(() => import('views/MyPlayList/my_playList'))),
+            },
+            {
+                path: '/my_playLst/playList',
+                til: 'playList',
+                element: Loadable(lazy(() => import('views/MyPlayList/playListInfo'))),
+            },
+        ]
+    },
+    {
+        path: '*',
+        til: '*',
+        element: Loadable(lazy(() => import('views/404'))),
+        hidden: false,
+    },
+    {
+        path: '/login',
+        til: 'login',
+        element: Loadable(lazy(() => import('views/login'))),
+        hidden: true,
+    },
+    {
+        path: '/forget',
+        til: 'forget',
+        element: Loadable(lazy(() => import('views/forget'))),
+        hidden: true,
+    },
+    {
+        path: '/reset',
+        til: 'reset',
+        element: Loadable(lazy(() => import('views/reset'))),
+        hidden: true,
+    },
+    {
+        path: '/signUp',
+        til: 'signUp',
+        element: Loadable(lazy(() => import('views/signUp'))),
+        hidden: true,
     },
 ]
 

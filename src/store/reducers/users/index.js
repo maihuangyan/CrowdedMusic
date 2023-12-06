@@ -4,7 +4,9 @@ import storage from "redux-persist/lib/storage";
 import { SET_USER, CLEAR_USER } from "../../actionType"
 
 const initState = {
-    user: {}
+    user: {
+        token: ""
+    }
 }
 
 const persistConfig = {
@@ -19,7 +21,7 @@ const userReducer = (state = initState, action) => {
         case SET_USER:
             return { ...state, user: payload }
         case CLEAR_USER:
-            return { ...state, user: {} }
+            return { ...state, user: { token: "" } }
         default:
             return state
     }

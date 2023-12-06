@@ -1,9 +1,10 @@
 // reducer import
 import usersReducer from "./users";
+import playListReducer from "./playList";
 
 // **  Initial State
 const initialState = {
-  
+
 };
 
 const authReducer = (state = initialState, action) => {
@@ -24,6 +25,7 @@ const authReducer = (state = initialState, action) => {
 const reducer = {
   auth: authReducer,
   users: usersReducer,
+  playList: playListReducer,
 };
 
 export default reducer;

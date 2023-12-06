@@ -6,9 +6,7 @@ import OneSignal from 'react-onesignal';
 
 const headers = {
   headers: {
-    "x-api-key": "juhtqcd8rZTw7hmya7dhTDsWiyBWy96V7WjVX5QVrfncQ2XJM8LArnYcyW2z",
-    "x-api-secret": "asdf",
-    "device_id": "device_id",
+    "x-api-key": "7JdqCYIFZEvuVu4G7liStvRM1bt9uAGIBNlVO2mk6QoSK4wmpK1O2OXwa0Be95ufB6nSh4ADRkrAVCu93u4tB1ohekWQfV2zOSkx",
   }
 }
 
@@ -36,15 +34,17 @@ export default class JwtService {
     axios.interceptors.request.use(
       (config) => {
         // ** Get token from localStorage
-        const accessToken = this.getToken();
+        const accessToken = store.getState().users.user.token;
 
         // ** If token is present add it to request's Authorization Header
-        if (OneSignal.User && OneSignal.User.PushSubscription) {
-          headers.headers.device_id = OneSignal.User.PushSubscription.device_id ? OneSignal.User.PushSubscription.device_id : 'browser';
-        }
+        // if (OneSignal.User && OneSignal.User.PushSubscription) {
+        //   headers.headers.device_id = OneSignal.User.PushSubscription.device_id ? OneSignal.User.PushSubscription.device_id : 'browser';
+        // }
+
         if (accessToken) {
           // ** eslint-disable-next-line no-param-reassign
-          config.headers.Authorization = `${this.jwtConfig.tokenType} ${accessToken}`;
+          // config.headers.Authorization = `${this.jwtConfig.tokenType} ${accessToken}`;
+          config.headers.token = accessToken;
         }
         return config;
       },
@@ -55,12 +55,11 @@ export default class JwtService {
     axios.interceptors.response.use(
       (response) => {
         if (
-          response.data.ResponseCode == 1000002 ||
-          response.data.ResponseCode == 1000003 ||
-          response.data.ResponseCode == 1000004
+          response.status == 200 ||
+          response.status == 201 ||
+          response.status == 202
         ) {
           console.log('logout: 42')
-          messageService.sendMessage("Logout");
         }
         return response;
       },
@@ -75,7 +74,6 @@ export default class JwtService {
           console.log("response", response);
           if (response.status === 401) {
             console.log('logout: 57')
-            messageService.sendMessage("Logout");
           }
           else if (response.status === 403) {
             const data = {
@@ -89,4 +87,34 @@ export default class JwtService {
       }
     );
   }
+
+
+  login(...args) {
+    return axios.post(this.jwtConfig.loginEndpoint, ...args, headers);
+  }
+
+  forget(...args) {
+    return axios.post(this.jwtConfig.forgotPasswordEndpoint, ...args, headers);
+  }
+
+  resetPassword(...args) {
+    return axios.post(this.jwtConfig.resetPasswordEndpoint, ...args, headers);
+  }
+  searchAllEndpoint
+
+  signUp(...args) {
+    return axios.post(this.jwtConfig.signUpEndpoint, ...args, headers);
+  }
+  
+  searchAll(...args) {
+    return axios.get(`${this.jwtConfig.searchAllEndpoint}?search_text=${args[0].search_text}`, headers);
+  }
+
+  getUserPlayList(...args) {
+    return axios.get(`${this.jwtConfig.userPlayListEndpoint}?user_id=${args[0].user_id}`, headers);
+  }
+
 }
+
+
+

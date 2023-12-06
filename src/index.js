@@ -8,6 +8,11 @@ import { store, persistor } from "./store"
 
 import App from './App';
 import "assets/scss/style.scss";
+import "assets/scss/fonts.css";
+import 'animate.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+import "assets/scss/main.css";
 
 import reportWebVitals from './reportWebVitals';
 

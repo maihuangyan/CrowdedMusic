@@ -14,8 +14,6 @@ export const getAllData = () => {
               data.push(user);
             }
           }
-
-          
         } else {
           console.log(res.data.ResponseCode);
         }

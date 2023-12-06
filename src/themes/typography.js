@@ -32,12 +32,12 @@ export default function themeTypography(theme) {
       fontWeight: 700,
     },
     h1: {
-      fontSize: "2.125rem",
-      color: theme.heading,
+      fontSize: "4.125rem",
       fontWeight: 300,
+      textTransform: "capitalize",
     },
     subtitle1: {
-      fontSize: "0.875rem",
+      fontSize: "1.175rem",
       fontWeight: 500,
       color: theme.textDark,
     },
@@ -52,15 +52,36 @@ export default function themeTypography(theme) {
       fontWeight: 400,
     },
     body1: {
-      fontSize: "0.875rem",
+      fontSize: "2.175rem",
       fontWeight: 400,
       lineHeight: "1.334em",
     },
     body2: {
+      fontSize: "1.375rem",
+      fontWeight: 400,
+      lineHeight: "1.934em",
+      color: "#b2b2b2",
+      textTransform: "capitalize",
+
+    },
+    body3: {
+      fontSize: "1.375rem",
+      color: "#718096",
+      fontWeight: 400,
+      lineHeight: "2.934em",
+    },
+    body4: {
+      fontSize: "1.075rem",
+      color: "#718096",
+      fontWeight: 400,
+      lineHeight: "1.934em",
+    },
+    body5: {
       fontSize: "0.875rem",
+      fontStyle: "italic",
+      color: "#2d3748",
       fontWeight: 400,
       lineHeight: "1.334em",
-      color: "#9e9e9e",
     },
     button: {
       textTransform: "capitalize",
@@ -94,7 +115,7 @@ export default function themeTypography(theme) {
       marginTop: "67px",
     },
     menuCaption: {
-      fontSize: "0.875rem",
+      fontSize: "1.175rem",
       fontWeight: 500,
       color: theme.heading,
       padding: "6px",

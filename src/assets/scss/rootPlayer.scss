@@ -1,0 +1,206 @@
+.rootPlayer {
+  .musicBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #dd4377;
+    position: relative;
+    height: 80px;
+
+    .musicMain {
+      display: flex;
+      position: relative;
+
+      .musicImage {
+        width: 50px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        margin-right: 20px;
+        animation: fadenum 60s infinite;
+
+        border-radius: 4px;
+        animation: none;
+
+        // @keyframes fadenum {
+        //   100% {
+        //     transform: rotate(360deg);
+        //   }
+        // }
+      }
+      .progressBar {
+        position: absolute;
+        left: 88px;
+        bottom: 0;
+        width: calc(100% - 115px);
+
+        .ant-slider {
+          margin: 0;
+
+          .ant-slider-rail {
+            background: rgba(255, 255, 255, 0.2);
+            height: 2px;
+          }
+          .ant-slider-track {
+            height: 2px;
+          }
+          .ant-slider-handle::after {
+            width: 8px;
+            height: 8px;
+          }
+          .ant-slider-handle::before {
+            width: 10px;
+            height: 10px;
+          }
+        }
+      }
+      .musicDesc {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .musicInfo {
+        margin-right: 10px;
+        position: relative;
+
+        .operationBar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: auto;
+          span {
+            margin-left: 20px;
+          }
+        }
+      }
+
+      .musicTime {
+        position: absolute;
+        right: 30px;
+        bottom: 20px;
+        font-size: 13px;
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 4px;
+        color: #fff;
+      }
+
+      .volume {
+        width: 130px;
+        margin-left: 20px;
+        margin-right: 10px;
+        .ant-slider {
+          margin: 0;
+
+          .ant-slider-rail {
+            background: rgba(255, 255, 255, 0.2);
+            height: 2px;
+          }
+          .ant-slider-track {
+            height: 2px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .rootPlayer {
+    .musicBox {
+      .musicMain {
+        .musicImage {
+          margin-right: 15px;
+        }
+        .progressBar {
+          position: absolute;
+          left: 78px;
+          bottom: 0;
+          width: calc(100% - 108px);
+        }
+        .musicDesc {
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+
+        .musicInfo {
+          margin-right: 10px;
+          position: relative;
+
+          .operationBar {
+            span {
+              margin-left: 15px;
+            }
+          }
+        }
+
+        .volume {
+          width: 110px;
+          margin-left: 10px;
+          margin-right: 10px;
+          .ant-slider {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .rootPlayer {
+    .musicBox {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: #dd4377;
+      position: relative;
+      height: 240px;
+      .musicMain {
+        height: 100%;
+        .musicImage {
+          margin-right: 15px;
+        }
+        .progressBar {
+          position: absolute;
+          left: 88px;
+          bottom: 20px;
+          width: calc(100% - 115px);
+        }
+        .musicDesc {
+          margin-top: 20px;
+          margin-bottom: 5px;
+        }
+
+        .musicInfo {
+          margin-right: 10px;
+          position: relative;
+
+          .operationBar {
+            span {
+              margin-left: 15px;
+            }
+          }
+        }
+        .musicTime {
+          position: absolute;
+          right: 30px;
+          bottom: 45px;
+        }
+        .volume {
+          width: 130px;
+          margin-left: 20px;
+          margin-right: 10px;
+          .ant-slider {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
