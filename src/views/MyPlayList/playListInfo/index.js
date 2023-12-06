@@ -50,9 +50,12 @@ export default function PlayLst() {
     const { data } = location.state
     const [query, setQuery] = useState("");
     const [songSearch, setSongSearch] = useState([])
+    const [songs, setSongs] = useState([])
+
     const handleSearch = (e) => {
         console.log(e.target.value, "handleSearch")
         setQuery(e.target.value)
+
     }
 
     const switchChange = (checked) => {
@@ -60,8 +63,22 @@ export default function PlayLst() {
     };
 
     useEffect(() => {
-        console.log(data)
-    }, [])
+        setSongs(data)
+    }, [location])
+
+    useEffect(() => {
+        if (songs?.songs) {
+            let filterTitle = data.songs.filter(item => item.song.title.toLowerCase()
+                .includes(query.toLowerCase()))
+            let filterArtist = data.songs.filter(item => item.song.artistName.toLowerCase()
+                .includes(query.toLowerCase()))
+            let filterAlbum = data.songs.filter(item => item.song.albumName.toLowerCase()
+                .includes(query.toLowerCase()))
+            let filterSongs = filterTitle.concat(filterArtist.concat(filterAlbum))
+
+            setSongs({ ...songs, songs: filterSongs })
+        }
+    }, [query])
 
     return (
         <Box sx={{ background: "#222", p: "30px" }}>
@@ -168,7 +185,7 @@ export default function PlayLst() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {data && data.songs
+                            {songs?.songs && songs.songs
                                 .map((item, index) => {
                                     return (
                                         <TableRow
@@ -180,7 +197,7 @@ export default function PlayLst() {
                                                 }
                                             }}
                                         >
-                                            <TableCell align="center" onClick={() => dispatch(addPlayList({ id: item.song.id, musicName: item.song.albumName, musicArt: item.song.artistName,musicImg: "assets/images/albums/01.jpg", musicSrc: item.song.media_link }))}>
+                                            <TableCell align="center" onClick={() => dispatch(addPlayList({ id: item.song.id, musicName: item.song.albumName, musicArt: item.song.artistName, musicImg: "assets/images/albums/01.jpg", musicSrc: item.song.media_link }))}>
                                                 <IconPlayerPlay className='player' size={25} stroke={2} color='#fff' style={{ cursor: "pointer", opacity: 0, verticalAlign: "middle" }} />
                                             </TableCell>
                                             <TableCell

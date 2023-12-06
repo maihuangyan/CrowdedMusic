@@ -14,7 +14,8 @@ export const getPlayList = (user_id) => {
           //     data.push(user);
           //   }
           // }
-          console.log(res.data.data)
+          data = res.data.data
+          console.log(data)
           dispatch({
             type: GET_PLAYLIST,
             data,

@@ -125,3 +125,17 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .musicPlay {
+    .musicBox {
+      .musicMain {
+        .musicTime {
+          position: absolute;
+          right: 0;
+          bottom: 38px;
+        }
+      }
+    }
+  }
+}

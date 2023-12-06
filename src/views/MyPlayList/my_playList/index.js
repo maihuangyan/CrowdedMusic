@@ -7,18 +7,18 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getPlayList } from "store/actions/playList"
-import { data } from '../playListData';
-import { Outlet, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 export default function MyPlayLst() {
 
     const user_id = useSelector((state) => state.users.user.id)
+    const myPlaylist = useSelector((state) => state.playList.myPlaylist)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(getPlayList(user_id))
-        console.log(data)
+        console.log(myPlaylist)
     }, [])
 
     const playListInfo = (item) => {
@@ -28,7 +28,7 @@ export default function MyPlayLst() {
     return (
         <Box sx={{ background: "#222", p: "30px", minHeight: "100vh" }}>
             {
-                data.data.map((item, i) => <Grid container key={i} sx={{ pl: "15px", pr: "15px" }} onClick={() => playListInfo(item)}>
+                myPlaylist.map((item, i) => <Grid container key={i} sx={{ pl: "15px", pr: "15px" }} onClick={() => playListInfo(item)}>
                     <Grid container alignItems="center" flexWrap="nowrap" sx={{
                         "&:hover .info": {
                             pl: "15px",

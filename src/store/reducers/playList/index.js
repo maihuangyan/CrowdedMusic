@@ -1,10 +1,11 @@
 import { persistReducer } from "redux-persist"
 import storage from "redux-persist/lib/storage";
 
-import { SET_PLAYLIST, CLEAR_PLAYLIST } from "../../actionType"
+import { SET_PLAYLIST, CLEAR_PLAYLIST , GET_PLAYLIST} from "../../actionType"
 
 const initState = {
-    playList: []
+    playList: [],
+    myPlaylist:[]
 }
 
 const persistConfig = {
@@ -16,6 +17,8 @@ const persistConfig = {
 const playListReducer = (state = initState, action) => {
     const { type, data = 1 } = action
     switch (type) {
+        case GET_PLAYLIST:
+            return { ...state, myPlaylist: data }
         case SET_PLAYLIST:
             let playList = [...state.playList]
             if (playList.length == 0) {
@@ -29,7 +32,6 @@ const playListReducer = (state = initState, action) => {
                 }
                 return { ...state, playList: playList}
             }
-
         case CLEAR_PLAYLIST:
             return { ...state, playList: [] }
         default:

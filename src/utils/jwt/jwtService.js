@@ -114,6 +114,10 @@ export default class JwtService {
     return axios.get(`${this.jwtConfig.userPlayListEndpoint}?user_id=${args[0].user_id}`, headers);
   }
 
+  createPlayList(...args) {
+    return axios.post(this.jwtConfig.createPlayListEndpoint, ...args, headers);
+  }
+
 }
 
 

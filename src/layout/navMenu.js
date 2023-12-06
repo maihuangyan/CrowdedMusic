@@ -17,9 +17,10 @@ import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { styled } from "@mui/material/styles";
 import items from './meunItem'
 import { IconMenu2, IconChevronDown, IconMusic } from "@tabler/icons-react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { clearUser } from 'store/actions/user';
 import headerUrl from "assets/img/parallax/header.jpg"
+import useJwt from "utils/jwt/useJwt"
 
 const CircleButton = styled(Button)(({ theme }) => ({
     borderRadius: "6px",
@@ -49,12 +50,12 @@ const CircleButton1 = styled(Button)(({ theme }) => ({
     },
 }));
 
-
 export default function NavMenu({ showButton }) {
 
     const navigate = useNavigate()
     const location = useLocation()
     const dispatch = useDispatch()
+    const user_id = useSelector((state) => state.users.user.id)
 
     const [current, setCurrent] = useState('');
     const onClick = (e) => {
@@ -97,20 +98,8 @@ export default function NavMenu({ showButton }) {
     }, [location.pathname])
 
     const tabsMenu = (text) => {
-        const handleText = text.toLowerCase().split(" ")
-        if (handleText.length > 1) {
-
-            if (handleText.join("_") == "sign_out") {
-                dispatch(clearUser())
-            } else {
-                navigate(`/${handleText.join("_")}`)
-            }
-        } else {
-            navigate(`/${text.toLowerCase()}`)
-        }
+        navigate(`/${text.path}`)
     }
-
-
 
     const list = () => (
         <Box
@@ -131,15 +120,14 @@ export default function NavMenu({ showButton }) {
                             overflow: isShow ? "auto" : "hidden",
                         }
                     }}>
-                        <ListItemButton onClick={() => tabsMenu(item.label)} sx={{ justifyContent: "space-between", width: "100%" }}>
+                        <ListItemButton onClick={() => tabsMenu(item)} sx={{ justifyContent: "space-between", width: "100%" }}>
                             <Typography >{item.label}</Typography>
                             {isShow && <IconChevronDown size={25} stroke={2} />}
-
                         </ListItemButton>
 
                         <List sx={{ width: "100%", transition: "0.5s" }}>
                             {item.children[0].children.map((ele, index) => <ListItem key={ele.key} disablePadding sx={{ position: "relative" }}>
-                                <ListItemButton onClick={() => tabsMenu(ele.label)} sx={{ justifyContent: "space-between" }}>
+                                <ListItemButton onClick={() => tabsMenu(ele)} sx={{ justifyContent: "space-between" }}>
                                     <Typography > - {ele.label}</Typography>
                                     {
                                         ele.children ? <IconChevronDown size={25} stroke={2} /> : ""
@@ -203,11 +191,26 @@ export default function NavMenu({ showButton }) {
     };
     const handleOk = () => {
         if (payListName) {
-            setIsModalOpen(false);
-            setPayListName("")
-            setDescription("")
-            setPayListImg(null);
-            setUploadFiles(null)
+
+            useJwt
+                .createPlayList({ user_id, name: payListName, image: uploadFiles })
+                .then(async (res) => {
+                    if (res.status === 200) {
+                        console.log(res, "6666");
+                        setIsModalOpen(false);
+                        setPayListName("")
+                        setDescription("")
+                        setPayListImg(null);
+                        setUploadFiles(null)
+                    } else {
+                        console.log(res.err)
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+
+
         }
         console.log(payListImg, uploadFiles)
     };
