@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import {
     Box,
     Grid,
@@ -7,7 +7,9 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getPlayList } from "store/actions/playList"
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import useJwt from "utils/jwt/useJwt"
+import { LoaderContext } from "utils/context/ProgressLoader"
 
 export default function MyPlayLst() {
 
@@ -15,9 +17,27 @@ export default function MyPlayLst() {
     const myPlaylist = useSelector((state) => state.playList.myPlaylist)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const showProgress = useContext(LoaderContext).showProgress
+    const hideProgress = useContext(LoaderContext).hideProgress
 
     useEffect(() => {
-        dispatch(getPlayList(user_id))
+        showProgress()
+        useJwt
+            .getUserPlayList({ user_id, all: 1 })
+            .then((res) => {
+                if (res.data.status == 1) {
+                    let data = [];
+                    data = res.data.data
+                    console.log(data)
+                    hideProgress()
+                    dispatch(getPlayList(data))
+                } else {
+                    hideProgress()
+                    console.log(res.data.ResponseCode);
+                }
+            })
+            .catch((err) => console.log(err));
+
         console.log(myPlaylist)
     }, [])
 

@@ -3,6 +3,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import Routes from "./routes";
 import themes from "./themes";
 import config from "config";
+import { ProgressLoader } from "utils/context/ProgressLoader";
 
 function App() {
 
@@ -12,7 +13,9 @@ function App() {
         fontFamily: config.fontFamily,
         borderRadius: config.borderRadius,
       })}>
-        <Routes />
+        <ProgressLoader>
+          <Routes />
+        </ProgressLoader>
       </ThemeProvider>
     </StyledEngineProvider>
   );

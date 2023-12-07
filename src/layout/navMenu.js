@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo, useContext } from 'react'
 import {
     Box,
     Grid,
@@ -6,13 +6,12 @@ import {
     Divider,
     ListItem,
     ListItemButton,
-    ListItemIcon,
     List,
     Drawer,
     Typography,
 } from '@mui/material'
 import { Menu, Modal, Input, Upload } from "antd"
-import logoImg from "assets/logo_shadow.png"
+import logoImg from "assets/ic_logo_light_gray.png"
 import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { styled } from "@mui/material/styles";
 import items from './meunItem'
@@ -21,6 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearUser } from 'store/actions/user';
 import headerUrl from "assets/img/parallax/header.jpg"
 import useJwt from "utils/jwt/useJwt"
+import { LoaderContext } from "utils/context/ProgressLoader"
 
 const CircleButton = styled(Button)(({ theme }) => ({
     borderRadius: "6px",
@@ -56,6 +56,9 @@ export default function NavMenu({ showButton }) {
     const location = useLocation()
     const dispatch = useDispatch()
     const user_id = useSelector((state) => state.users.user.id)
+    const showToast = useContext(LoaderContext).showToast
+    const showProgress = useContext(LoaderContext).showProgress
+    const hideProgress = useContext(LoaderContext).hideProgress
 
     const [current, setCurrent] = useState('');
     const onClick = (e) => {
@@ -187,22 +190,30 @@ export default function NavMenu({ showButton }) {
     const [payListImg, setPayListImg] = useState(null);
     const [uploadFiles, setUploadFiles] = useState(null);
     const showModal = () => {
-        setIsModalOpen(true);
+        if (user_id) {
+            setIsModalOpen(true);
+        } else {
+            showToast("error", "You must be logged in")
+        }
     };
+
     const handleOk = () => {
         if (payListName) {
-
+            showProgress()
             useJwt
                 .createPlayList({ user_id, name: payListName, image: uploadFiles })
                 .then(async (res) => {
                     if (res.status === 200) {
                         console.log(res, "6666");
+                        showToast("success", res.data.message)
                         setIsModalOpen(false);
                         setPayListName("")
                         setDescription("")
                         setPayListImg(null);
                         setUploadFiles(null)
+                        hideProgress()
                     } else {
+                        showToast("error", res.data.message)
                         console.log(res.err)
                     }
                 })

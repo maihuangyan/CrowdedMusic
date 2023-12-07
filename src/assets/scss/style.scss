@@ -312,7 +312,7 @@ a {
     }
 
     .playList {
-      width: 60% !important;
+      width: 50% !important;
       .ant-modal-content {
         background: #2b2b2b;
 
@@ -348,6 +348,17 @@ a {
     }
   }
 }
+
+@media screen and (max-width: 1600px) {
+    .ant-modal-root {
+      .ant-modal-wrap {
+        .playList {
+          width: 60% !important;
+        }
+      }
+    }
+  }
+
 
 @media screen and (max-width: 1280px) {
   .ant-modal-root {

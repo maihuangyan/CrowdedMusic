@@ -12,7 +12,7 @@ export const jwtDefaultConfig = {
 
   searchAllEndpoint: `${process.env.REACT_APP_BASE_API_URL}/song/search_all`,
 
-  userPlayListEndpoint: `${process.env.REACT_APP_BASE_API_URL}/song/following_users_playlists`,
+  userPlayListEndpoint: `${process.env.REACT_APP_BASE_API_URL}/song/user_playlists`,
   
   createPlayListEndpoint: `${process.env.REACT_APP_BASE_API_URL}/song/create_playlist`,
 

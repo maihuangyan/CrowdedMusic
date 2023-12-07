@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import {
     Box,
     Grid,
@@ -13,6 +13,7 @@ import {
     InputAdornment,
     IconButton,
     Button,
+    Alert
 } from '@mui/material'
 import { IconSearch, IconMenu2, IconX, IconChevronDown } from "@tabler/icons-react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -23,6 +24,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FaceBookIcon1, TwitterIcon1, GooglesIcon1, YouToBeIcon, ShoppingIcon, SearchIcon } from 'assets/icons';
 import { styled, useTheme } from "@mui/material/styles";
 import useJwt from "utils/jwt/useJwt";
+import { LoaderContext } from "utils/context/ProgressLoader"
+
 
 const CircleButton2 = styled(Button)(({ theme }) => ({
     borderRadius: "50% !important",
@@ -44,6 +47,7 @@ export default function Header() {
     const location = useLocation()
     const dispatch = useDispatch()
     const token = useSelector(state => state.users.user.token)
+    const showToast = useContext(LoaderContext).showToast
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -69,8 +73,6 @@ export default function Header() {
     }
 
     useEffect(() => {
-        console.log(query, "handleSearch")
-
         useJwt
             .searchAll({ search_text: query })
             .then((res) => {
@@ -85,6 +87,12 @@ export default function Header() {
                     setSongSearch(songsArr)
                 }
                 else {
+                    if (token) {
+                        showToast("error", "Login expired Please log in again")
+                        setTimeout(() => {
+                            navigate("/login")
+                        }, 2000)
+                    }
                     console.log(res.data.ResponseCode)
                 }
             })
@@ -240,7 +248,7 @@ export default function Header() {
                                 "aria-labelledby": "basic-button",
                             }}
                         >
-                            <MenuItem sx={{ minWidth: "150px" }} onClick={() => (navigate("/my_playLst"),setAnchorEl(null))}>
+                            <MenuItem sx={{ minWidth: "150px" }} onClick={() => (navigate("/my_playLst"), setAnchorEl(null))}>
                                 <ListItemText>
                                     <Typography sx={{ fontSize: "16px" }}>My PlayLists</Typography>
                                 </ListItemText>

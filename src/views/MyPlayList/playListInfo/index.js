@@ -68,17 +68,38 @@ export default function PlayLst() {
 
     useEffect(() => {
         if (songs?.songs) {
-            let filterTitle = data.songs.filter(item => item.song.title.toLowerCase()
-                .includes(query.toLowerCase()))
-            let filterArtist = data.songs.filter(item => item.song.artistName.toLowerCase()
-                .includes(query.toLowerCase()))
-            let filterAlbum = data.songs.filter(item => item.song.albumName.toLowerCase()
-                .includes(query.toLowerCase()))
-            let filterSongs = filterTitle.concat(filterArtist.concat(filterAlbum))
+            if (songs.songs?.song) {
+                let filterTitle = data.songs.filter(item => item.song.title.toLowerCase()
+                    .includes(query.toLowerCase()))
+                let filterArtist = data.songs.filter(item => item.song.artistName.toLowerCase()
+                    .includes(query.toLowerCase()))
+                let filterAlbum = data.songs.filter(item => item.song.albumName.toLowerCase()
+                    .includes(query.toLowerCase()))
+                let filterSongs = filterTitle.concat(filterArtist.concat(filterAlbum))
 
-            setSongs({ ...songs, songs: filterSongs })
+                setSongs({ ...songs, songs: filterSongs })
+            } else {
+
+                if (query) {
+                    let filterTitle = data.songs.filter(item => item.title.toLowerCase()
+                        .includes(query.toLowerCase()))
+                    let filterArtist = data.songs.filter(item => item.artistName.toLowerCase()
+                        .includes(query.toLowerCase()))
+                    let filterAlbum = data.songs.filter(item => item.albumName.toLowerCase()
+                        .includes(query.toLowerCase()))
+                    let filterSongs = filterTitle.concat(filterArtist.concat(filterAlbum))
+
+                    setSongs({ ...songs, songs: filterSongs })
+                    console.log(songs)
+                } else {
+                    setSongs(data)
+                }
+
+            }
+
         }
     }, [query])
+
 
     return (
         <Box sx={{ background: "#222", p: "30px" }}>
@@ -214,7 +235,9 @@ export default function PlayLst() {
                                                     console.log(item.id);
                                                 }}
                                             >
-                                                {item.song.title}
+                                                {
+                                                    item?.song ? item.song.title : item.title
+                                                }
                                             </TableCell>
                                             <TableCell
                                                 align="left"
@@ -222,16 +245,9 @@ export default function PlayLst() {
                                                     console.log(item.id);
                                                 }}
                                             >
-                                                {item.song.artistName}
-                                            </TableCell>
-
-                                            <TableCell
-                                                align="left"
-                                                onClick={() => {
-                                                    console.log(item.id);
-                                                }}
-                                            >
-                                                {item.song.albumName}
+                                                {
+                                                    item?.song ? item.song.artistName : item.artistName
+                                                }
                                             </TableCell>
 
                                             <TableCell
@@ -240,7 +256,18 @@ export default function PlayLst() {
                                                     console.log(item.id);
                                                 }}
                                             >
-                                                {formatSongsDate(item.song.created_at)}
+                                                {
+                                                    item?.song ? item.song.albumName : item.albumName
+                                                }
+                                            </TableCell>
+
+                                            <TableCell
+                                                align="left"
+                                                onClick={() => {
+                                                    console.log(item.id);
+                                                }}
+                                            >
+                                                {formatSongsDate(item?.song ? item.song.created_at : item.created_at)}
                                             </TableCell>
 
                                             <TableCell
