@@ -117,6 +117,10 @@ export default class JwtService {
   createPlayList(...args) {
     return axios.post(this.jwtConfig.createPlayListEndpoint, ...args, headers);
   }
+  
+  getTrending(...args) {
+    return axios.get(this.jwtConfig.getTrendingEndpoint, ...args, headers);
+  }
 
 }
 

@@ -171,8 +171,8 @@ export default function NavMenu({ showButton }) {
         zIndex: 10,
         width: "100%",
         transition: "0.3s",
-        pt: showButton ? "0" : "10px",
-        pb: showButton ? "0" : "10px",
+        pt: showButton ? "0" : {xs:"0",md:"10px"},
+        pb: showButton ? "0" : {xs:"0",md:"10px"},
         "&::before": {
             content: "''",
             position: "absolute",
@@ -268,12 +268,12 @@ export default function NavMenu({ showButton }) {
     return (
         <Box sx={isChangeNav ? homeNav : nav}>
             <Grid container>
-                <Grid item xs={2} sm={2} md={2} sx={{ p: "10px 30px" }}>
+                <Grid item xs={3} xl={2} sx={{ p: "10px 30px" }}>
                     <NavLink to="/homepage">
                         <img style={{ minWidth: "120px", maxHeight: "80px" }} className='logo' src={logoImg} alt="" />
                     </NavLink>
                 </Grid>
-                <Grid item xs={8} sm={8} md={8} container justifyContent="center" alignItems="center">
+                <Grid item xs={6} xl={8} container justifyContent="center" alignItems="center">
                     <Box sx={{ width: "100%", display: { xs: "none", sm: "none", md: "flex" }, justifyContent: "center", alignItems: "center" }}>
                         <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} selectable={true} />
                     </Box>
@@ -281,7 +281,7 @@ export default function NavMenu({ showButton }) {
                         <IconMenu2 color='#fff' size={40} stroke={2} onClick={() => handleShowMenu()} />
                     </Box>
                 </Grid>
-                <Grid item xs={2} sm={2} md={2} container justifyContent="center" alignItems="center" sx={{ p: "10px 10px" }}>
+                <Grid item xs={3} xl={2} container justifyContent="center" alignItems="center" sx={{ p: "10px 10px" }}>
                     <CircleButton onClick={() => showModal()}>CREATE PLAYLIST</CircleButton>
                 </Grid>
             </Grid>

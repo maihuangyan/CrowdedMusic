@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useContext } from 'react'
 import { useTheme } from '@mui/material/styles';
 import { IconRectangleVertical, IconPlus } from "@tabler/icons-react"
 import Slider from "react-slick";
@@ -6,8 +6,13 @@ import "./Trending.scss"
 import "./slick.scss"
 import { useDispatch } from 'react-redux';
 import { addPlayList } from 'store/actions/playList';
+import useJwt from "utils/jwt/useJwt";
+import { LoaderContext } from "utils/context/ProgressLoader"
 
 export default function Trending() {
+
+  const showProgress = useContext(LoaderContext).showProgress
+  const hideProgress = useContext(LoaderContext).hideProgress
 
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
@@ -150,6 +155,29 @@ export default function Trending() {
   ]
 
   const dispatch = useDispatch()
+  const [trendingSongs, setTrendingSongs] = useState([]);
+  const [popularEpisode, setPopularEpisode] = useState([]);
+
+  useEffect(() => {
+    showProgress()
+    useJwt
+      .getTrending()
+      .then((res) => {
+        if (res.data.status == 1) {
+          let data = [];
+          data = res.data.data
+          console.log(data)
+          setTrendingSongs(data.top_songs.data)
+          setPopularEpisode(data.top_episodes.data)
+          hideProgress()
+        } else {
+          hideProgress()
+          console.log(res.data.ResponseCode);
+        }
+      })
+      .catch((err) => console.log(err));
+
+  }, [])
 
   return (
     <div className='trending'>
@@ -300,84 +328,25 @@ export default function Trending() {
                     </div>
                   </div>
                   <ul id="top_week" className="navalist-a">
-                    <li>
-                      <a href="">
-                        <img src={require("assets/images/songs/navList/this week/01.jpeg")}
-                          alt='' />
-                        <div className="info vertical-center-parent">
-                          <div className="vertical-center">
-                            <span className="artist-name">Erfan Tahmasbi</span>
-                            <span className="song-name">To</span>
+                    {
+                      trendingSongs.map((item, index) => <li key={index}>
+                        <a href="">
+                          <img src={item.album_art}
+                            alt='' />
+                          <div className="info vertical-center-parent">
+                            <div className="vertical-center">
+                              <span className="artist-name">{item.artistName}</span>
+                              <span className="song-name">{item.albumName}</span>
+                            </div>
                           </div>
-                        </div>
-                      </a>
-                      <div className="dur"><span>
-                        <IconRectangleVertical size={15} stroke={1} />
-                        231k
-                        <IconPlus className='add-playlist' size={15} stroke={2} onClick={() => dispatch(addPlayList(date[0]))} />
-                      </span></div>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src={require("assets/images/songs/navList/this week/02.jpeg")}
-                          alt='' />
-                        <div className="info vertical-center-parent">
-                          <div className="vertical-center">
-                            <span className="artist-name">Gelareh Sheibani</span>
-                            <span className="song-name">Negam Kon</span>
-                          </div>
-                        </div>
-                      </a>
-                      <div className="dur"><span><IconRectangleVertical size={15} stroke={1} />
-                        80k
-                        <IconPlus className='add-playlist' size={15} stroke={2} onClick={() => dispatch(addPlayList(date[1]))} /></span></div>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src={require("assets/images/songs/navList/this week/03.jpeg")}
-                          alt='' />
-                        <div className="info vertical-center-parent">
-                          <div className="vertical-center">
-                            <span className="artist-name">Azel
-                            </span>
-                            <span className="song-name">Soroode Fareh lran</span>
-                          </div>
-                        </div>
-                      </a>
-                      <div className="dur"><span><IconRectangleVertical size={15} stroke={1} />
-                        79k
-                        <IconPlus className='add-playlist' size={15} stroke={2} onClick={() => dispatch(addPlayList(date[2]))} /></span></div>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src={require("assets/images/songs/navList/this week/04.jpeg")}
-                          alt='' />
-                        <div className="info vertical-center-parent">
-                          <div className="vertical-center">
-                            <span className="artist-name">Hamid Askari</span>
-                            <span className="song-name">Merci</span>
-                          </div>
-                        </div>
-                      </a>
-                      <div className="dur"><span><IconRectangleVertical size={15} stroke={1} />
-                        41k
-                        <IconPlus className='add-playlist' size={15} stroke={2} /></span></div>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src={require("assets/images/songs/navList/this week/05.jpeg")}
-                          alt='' />
-                        <div className="info vertical-center-parent">
-                          <div className="vertical-center">
-                            <span className="artist-name">Yousef Zamani</span>
-                            <span className="song-name">Parizad 2</span>
-                          </div>
-                        </div>
-                      </a>
-                      <div className="dur"><span><IconRectangleVertical size={15} stroke={1} />
-                        35k
-                        <IconPlus className='add-playlist' size={15} stroke={2} /></span></div>
-                    </li>
+                        </a>
+                        <div className="dur"><span>
+                          <IconRectangleVertical size={15} stroke={1} />
+                          {item.plays}
+                          <IconPlus className='add-playlist' size={15} stroke={2} onClick={() => dispatch(addPlayList(date[0]))} />
+                        </span></div>
+                      </li>)
+                    }
                   </ul>
                 </div>
                 <div className="col-md-6">
@@ -388,82 +357,23 @@ export default function Trending() {
                     </div>
                   </div>
                   <ul id="top_week" className="navalist-a">
-                    <li>
+                  {
+                      popularEpisode.map((item, index) => <li key={index}>
                       <a href="">
-                        <img src={require("assets/images/songs/navList/all time/01.jpeg")}
+                        <img src={item.avatarURL}
                           alt='' />
                         <div className="info vertical-center-parent">
                           <div className="vertical-center">
-                            <span className="artist-name">Shadmehr Aghili</span>
-                            <span className="song-name">Bi Ehsas</span>
+                            <span className="artist-name">{item.name}</span>
+                            <span className="song-name">{item.podcastTitle}</span>
                           </div>
                         </div>
                       </a>
                       <div className="dur"><span><IconRectangleVertical size={15} stroke={1} />
                         63.5M
                         <IconPlus className='add-playlist' size={15} stroke={2} /></span></div>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src={require("assets/images/songs/navList/all time/02.jpeg")}
-                          alt='' />
-                        <div className="info vertical-center-parent">
-                          <div className="vertical-center">
-                            <span className="artist-name">Shadmehr Aghili</span>
-                            <span className="song-name">Barandeh</span>
-                          </div>
-                        </div>
-                      </a>
-                      <div className="dur"><span><IconRectangleVertical size={15} stroke={1} />
-                        61.4M
-                        <IconPlus className='add-playlist' size={15} stroke={2} /></span></div>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src={require("assets/images/songs/navList/all time/03.jpeg")}
-                          alt='' />
-                        <div className="info vertical-center-parent">
-                          <div className="vertical-center">
-                            <span className="artist-name">Behnam Bani
-                            </span>
-                            <span className="song-name">Ghorse Ghamar 2</span>
-                          </div>
-                        </div>
-                      </a>
-                      <div className="dur"><span><IconRectangleVertical size={15} stroke={1} />
-                        59.6M
-                        <IconPlus className='add-playlist' size={15} stroke={2} /></span></div>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src={require("assets/images/songs/navList/all time/04.jpeg")}
-                          alt='' />
-                        <div className="info vertical-center-parent">
-                          <div className="vertical-center">
-                            <span className="artist-name">Shadmehr Aghili</span>
-                            <span className="song-name">Avaz Nemishi</span>
-                          </div>
-                        </div>
-                      </a>
-                      <div className="dur"><span><IconRectangleVertical size={15} stroke={1} />
-                        55.7M
-                        <IconPlus className='add-playlist' size={15} stroke={2} /></span></div>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src={require("assets/images/songs/navList/all time/05.jpeg")}
-                          alt='' />
-                        <div className="info vertical-center-parent">
-                          <div className="vertical-center">
-                            <span className="artist-name">Hoorosh Band</span>
-                            <span className="song-name">Mah Pishooni</span>
-                          </div>
-                        </div>
-                      </a>
-                      <div className="dur"><span><IconRectangleVertical size={15} stroke={1} />
-                        54.9M
-                        <IconPlus className='add-playlist' size={15} stroke={2} /></span></div>
-                    </li>
+                    </li>)
+                    }
                   </ul>
                 </div>
               </div>

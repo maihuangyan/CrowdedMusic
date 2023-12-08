@@ -16,6 +16,8 @@ export const jwtDefaultConfig = {
   
   createPlayListEndpoint: `${process.env.REACT_APP_BASE_API_URL}/song/create_playlist`,
 
+  getTrendingEndpoint: `${process.env.REACT_APP_BASE_API_URL}/song/trending_all`,
+
 
   // ** This will be prefixed in authorization header with token
   // ? e.g. Authorization: Bearer <token>

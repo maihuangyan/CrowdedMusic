@@ -178,12 +178,8 @@ export default function Header() {
                                             color: "#ada1a1"
                                         }, cursor: "pointer",
                                     }} onClick={() => toSearchPage(ele)}>
-                                        <Grid item sx={{ width: "55px" }}>
-                                            {/* {
-                                            item.map((ele, i) => <img
-                                                src={index == 0 ? ele.avatarURL : (index == 1 ? "" : (index == 2 ? ele.album_art : ele.artist_avatar_url))} alt='' key={i} width={55} />)
-                                        } */}
-                                            <img src={"https://media.navahang.me/2018/12/75x75/Hoorosh-Band-Ashegham-Kardi.jpg"} alt='' width={55} />
+                                        <Grid item sx={{ minWidth: "55px",minHeight:"55px" }}>
+                                            <img src={index == 0 ? ele.avatarURL : (index == 2 ?ele.album_art:ele.artist_avatar_url)} alt='' width={55} style={{height:"55px"}} />
                                         </Grid>
                                         <Grid item sx={{ pl: "5px", height: "100%", }} xs={10.5} sm={11} md={11} xl={11.5}>
                                             <Box>

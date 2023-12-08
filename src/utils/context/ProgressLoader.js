@@ -1,6 +1,7 @@
 import { Alert, Button, Dialog, DialogActions, DialogTitle, Modal, Snackbar } from "@mui/material";
 import { createContext, useEffect, useState } from "react"
-import loader from 'assets/images/back-trans.svg';
+// import loader from 'assets/images/back-trans.svg';
+import loader from 'assets/images/preloader (1).png';
 import useJwt from "utils/jwt/useJwt";
 import { useSelector } from "react-redux";
 
@@ -97,7 +98,7 @@ const ProgressLoader = ({ children }) => {
         }}
         open={open}
       >
-        <div style={{ backgroundColor: "transparent", outline: 0 }}>
+        <div style={{ backgroundColor: "transparent", outline: 0 }} className="fa-spin">
           <img src={loader} alt="" style={{ width: '100px', height: '100px' }} />
         </div>
       </Modal>

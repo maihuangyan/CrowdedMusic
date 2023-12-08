@@ -80,7 +80,7 @@ const Layout = () => {
                     </Routes>
                 </Box>
             } */}
-            <Box sx={{ overflow: "hidden", position: "relative", pb: playList.length && !isLogin ? {xs:"240px",md:"80px"} : 0, pt: isLogin ? "0" : (isChangeNav ? {xs:"120px",md:"80px"} : {xs:"230px",md:"190px"}) }}>
+            <Box sx={{ overflow: "hidden", position: "relative", pb: playList.length && !isLogin ? {xs:"240px",md:"80px"} : 0, pt: isLogin ? "0" : (isChangeNav ? {xs:"120px",md:"80px"} : {xs:"210px",md:"190px"}) }}>
                 {!isLogin && <Header />}
                 {!isLogin && <NavMenu showButton={showButton} />}
                 <main>

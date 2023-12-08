@@ -61,12 +61,8 @@ export default function MyPlayLst() {
                         overflow: "hidden",
                         background: "#171717",
                     }} >
-                        <Grid item sx={{ width: "75px" }}>
-                            {/* {
-                                    item.map((ele, i) => <img
-                                        src={index == 0 ? ele.avatarURL : (index == 1 ? "" : (index == 2 ? ele.album_art : ele.artist_avatar_url))} alt='' key={i} width={55} />)
-                                } */}
-                            <img src={"https://media.navahang.me/2018/12/75x75/Hoorosh-Band-Ashegham-Kardi.jpg"} alt='' width={75} />
+                        <Grid item sx={{ maxWidth: "75px" ,maxHeight: "75px"}}>
+                            <img src={item.remoteAvatarPath} alt='' width={75}  />
                         </Grid>
                         {
                             <Grid item container alignItems="center"
