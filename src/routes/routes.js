@@ -105,6 +105,93 @@ const routes = [
         ]
     },
     {
+        path: '/blog',
+        name: 'blog',
+        til: 'blog',
+        element: Loadable(lazy(() => import('views/blog'))),
+        hidden: false,
+        children: [
+            {
+                path: '/blog/blog-right',
+                name: 'blog-right',
+                til: 'blog-right',
+                element: Loadable(lazy(() => import('views/blog/rightSidebar'))),
+            },
+            {
+                path: '/blog/blog-left',
+                name: 'blog-left',
+                til: 'blog-left',
+                element: Loadable(lazy(() => import('views/blog/leftSidebar'))),
+            },
+            {
+                path: '/blog/blog-full',
+                name: 'blog-full',
+                til: 'blog-full',
+                element: Loadable(lazy(() => import('views/blog/noSidebar'))),
+            },
+            {
+                path: '/blog/blog-mosaic',
+                name: 'blog-mosaic',
+                til: 'blog-mosaic',
+                element: Loadable(lazy(() => import('views/blog/blogGrid'))),
+            },
+        ]
+    },
+    {
+        path: '/post',
+        name: 'post',
+        til: 'post',
+        element: Loadable(lazy(() => import('views/blog/post'))),
+        hidden: false,
+        children: [
+            {
+                path: '/post/post-right',
+                name: 'post-right',
+                til: 'post-right',
+                element: Loadable(lazy(() => import('views/blog/post/rightSidebar'))),
+            },
+            {
+                path: '/post/post-left',
+                name: 'post-left',
+                til: 'post-left',
+                element: Loadable(lazy(() => import('views/blog/post/leftSidebar'))),
+            },
+            {
+                path: '/post/post-full',
+                name: 'post-full',
+                til: 'post-full',
+                element: Loadable(lazy(() => import('views/blog/post/noSidebar'))),
+            },
+        ]
+    },
+    {
+        path: '/video-post',
+        name: 'video-post',
+        til: 'video-post',
+        element: Loadable(lazy(() => import('views/blog/videoPost'))),
+        hidden: false,
+        children: [
+            {
+                path: '/video-post/video-post-right',
+                name: 'video-post-right',
+                til: 'video-post-right',
+                element: Loadable(lazy(() => import('views/blog/videoPost/rightSidebar'))),
+            },
+            {
+                path: '/video-post/video-post-left',
+                name: 'video-post-left',
+                til: 'video-post-left',
+                element: Loadable(lazy(() => import('views/blog/videoPost/leftSidebar'))),
+            },
+            {
+                path: '/video-post/video-post-full',
+                name: 'video-post-full',
+                til: 'video-post-full',
+                element: Loadable(lazy(() => import('views/blog/videoPost/noSidebar'))),
+            },
+        ]
+    },
+    {
         path: '/searchPage',
         til: 'searchPage',
         element: Loadable(lazy(() => import('views/searchPage'))),

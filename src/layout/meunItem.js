@@ -233,34 +233,88 @@ const items = [
     {
         label: "BLOG",
         key: 'blog',
-        path: "blog",
+        path: "blog/blog-right",
         children: [
             {
                 type: 'group',
                 children: [
                     {
-                        label: 'BLOG1',
-                        key: 'blog1',
-                        path: "blog1",
+                        label: 'right sidebar',
+                        key: 'blog/blog-right',
+                        path: "blog/blog-right",
 
                     },
                     {
-                        label: 'BLOG 2',
-                        key: 'blog2',
-                        path: "blog2",
+                        label: 'left sidebar',
+                        key: 'blog/blog-left',
+                        path: "blog/blog-left",
 
                     },
                     {
-                        label: 'BLOG 3',
-                        key: 'blog3',
-                        path: "blog3",
+                        label: 'no sidebar',
+                        key: '/blog/blog-full',
+                        path: "/blog/blog-full",
 
                     },
                     {
-                        label: 'BLOG 4',
-                        key: 'blog4',
-                        path: "blog4",
+                        label: 'blog grid',
+                        key: '/blog/blog-mosaic',
+                        path: "/blog/blog-mosaic",
 
+                    },
+                    {
+                        label: 'post',
+                        key: 'post',
+                        path: 'post/post-right',
+                        children: [
+                            {
+                                type: 'group',
+                                children: [
+                                    {
+                                        label: 'right sidebar',
+                                        key: 'post/post-right',
+                                        path: 'post/post-right',
+                                    },
+                                    {
+                                        label: 'left sidebar',
+                                        key: '/post/post-left',
+                                        path: '/post/post-left',
+                                    },
+                                    {
+                                        label: 'no sidebar',
+                                        key: '/post/post-full',
+                                        path: '/post/post-full',
+                                    },
+                                ]
+                            }
+                        ],
+                    },
+                    {
+                        label: 'video post',
+                        key: 'video post',
+                        path: 'video-post/video-post-right',
+                        children: [
+                            {
+                                type: 'group',
+                                children: [
+                                    {
+                                        label: 'right sidebar',
+                                        key: 'video-post/video-post-right',
+                                        path: 'video-post/video-post-right',
+                                    },
+                                    {
+                                        label: 'left sidebar',
+                                        key: '/video-post/video-post-left',
+                                        path: '/video-post/video-post-left',
+                                    },
+                                    {
+                                        label: 'no sidebar',
+                                        key: '/video-post/video-post-full',
+                                        path: '/video-post/video-post-full',
+                                    },
+                                ]
+                            }
+                        ],
                     },
                 ],
             },

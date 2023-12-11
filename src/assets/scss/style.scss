@@ -135,6 +135,10 @@ a {
   width: 90%;
   justify-content: space-between;
 
+  .ant-menu-item-group-list{
+    padding-bottom: 30px !important;
+  }
+
   .ant-menu-title-content {
     font-family: "Changa", sans-serif;
     font-size: 14px;
@@ -171,6 +175,17 @@ a {
 
     .ant-menu-submenu-title {
       color: #fff !important;
+    }
+  }
+
+  .ant-menu-submenu-vertical {
+    border-bottom: 1px solid #404040;
+    border-radius: 4px;
+    text-align: center;
+    .ant-menu-submenu-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
@@ -269,18 +284,18 @@ a {
 }
 
 .ant-switch {
-    border: 1px solid #7b7b7b;
-    .ant-switch-handle {
-      inset-inline-start: 0;
-      top: 0;
-      width: 20px;
-      height: 20px;
-    }
+  border: 1px solid #7b7b7b;
+  .ant-switch-handle {
+    inset-inline-start: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
   }
-  
-  .ant-switch-checked{
-      background: #dd4377 !important;
-  }
+}
+
+.ant-switch-checked {
+  background: #dd4377 !important;
+}
 
 .ant-modal-root {
   font-size: 16px;
@@ -350,15 +365,14 @@ a {
 }
 
 @media screen and (max-width: 1600px) {
-    .ant-modal-root {
-      .ant-modal-wrap {
-        .playList {
-          width: 60% !important;
-        }
+  .ant-modal-root {
+    .ant-modal-wrap {
+      .playList {
+        width: 60% !important;
       }
     }
   }
-
+}
 
 @media screen and (max-width: 1280px) {
   .ant-modal-root {
