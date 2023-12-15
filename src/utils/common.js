@@ -1,13 +1,13 @@
 export const isEmpty = (value) => {
-    if (!value) {
-      return true;
-    }
-    value = ('' + value).replace(/\r?\n|\r/g, '').replace(' ', '')
-    if (value) {
-      return false
-    }
-    return true
-  } 
+  if (!value) {
+    return true;
+  }
+  value = ('' + value).replace(/\r?\n|\r/g, '').replace(' ', '')
+  if (value) {
+    return false
+  }
+  return true
+}
 
 
 
@@ -59,3 +59,34 @@ export const formatSongsDate = (milisecs) => {
     return month + " " + date;
   }
 };
+
+export const formatDate = (timestamp, format) => {
+
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let timestamps = Math.round(timestamp)
+  const date = new Date(timestamps);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  format = format.replace('yyyy', year);
+  format = format.replace('MM', month < 10 ? '0' + month : month);
+  format = format.replace('dd', day < 10 ? '0' + day : day);
+
+  let aa = day < 10 ? '0' + day : day + " " + months[month] + " " + year
+
+  return aa;
+}

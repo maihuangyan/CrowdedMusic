@@ -13,8 +13,14 @@ import { ShuffleIcon } from "assets/icons"
 import 'assets/scss/rootPlayer.scss';
 import musicUrl from 'assets/images/albums/01.jpg'
 import { Grid } from '@mui/material';
+import { useSelector } from 'react-redux';
+import useJwt from "utils/jwt/useJwt";
 
 export default function RootPlayer({ musicInfoList }) {
+
+  const openPlaylist = useSelector((state) => state.playList.openPlaylist)
+  const user_id = useSelector((state) => state.users.user.id)
+
   const musicRef = useRef()
   const [musicInfo, setMusicInfo] = useState([])
   const [musicIndex, setMusicIndex] = useState(0)
@@ -33,25 +39,41 @@ export default function RootPlayer({ musicInfoList }) {
   const path = allSvgFilepaths[allSvgFilepaths.length - 1];//取最后一张图片地址
 
   useEffect(() => {
+    if (openPlaylist) {
+      playMusic()
+    }
+  }, [openPlaylist])
+
+  useEffect(() => {
+    setMusicIndex(0)
+    setMusicInfo([...musicInfoList])
+  }, [musicInfoList])
+
+  useEffect(() => {
     if (musicInfoList.length) {
       if (musicInfo.length === 0) return setMusicInfo([...musicInfoList])
-
-      setMusicImg(reqSvgs(musicInfo[musicIndex].musicImg))
-      setMusicName(musicInfo[musicIndex].musicName)
-      setMusicArt(musicInfo[musicIndex].musicArt)
-      setMusicSrc(musicInfo[musicIndex].musicSrc)
+      setMusicImg("assets/images/albums/02.jpg")
+      setMusicName(musicInfo[musicIndex].albumName)
+      setMusicArt(musicInfo[musicIndex].artistName)
+      setMusicSrc(musicInfo[musicIndex].remotePath)
     }
-  }, [musicInfo, musicInfoList])
+  }, [musicInfo,musicInfoList])
 
   useEffect(() => {
     if (musicInfo.length == 0) return
 
-    const { musicName, musicArt, musicSrc } = musicInfo[musicIndex]
-    setMusicName(musicName)
-    setMusicArt(musicArt)
-    setMusicSrc(musicSrc)
+    // const { musicName, musicArt, musicSrc } = musicInfo[musicIndex]
+    setMusicName(musicInfo[musicIndex].albumName)
+    setMusicArt(musicInfo[musicIndex].artistName)
+    setMusicSrc(musicInfo[musicIndex].remotePath)
     setTimeout(playMusic, 500)
-  }, [musicIndex])
+    useJwt
+      .songPlay({ user_id, song_id: musicInfo[musicIndex].id })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch(error => console.log(error))
+  }, [musicIndex, musicInfoList])
 
   const songTimeFilter = (val) => {
     const dt = new Date(val * 1000)
@@ -141,9 +163,7 @@ export default function RootPlayer({ musicInfoList }) {
   return (
     <>
       <div className='rootPlayer'>
-
         <div className="musicBox">
-
           <div className='musicMain'>
             <audio ref={musicRef} type="audio" src={musicSrc} ></audio>
             <Grid container>
@@ -179,7 +199,7 @@ export default function RootPlayer({ musicInfoList }) {
               </Grid>
               <Grid item xs={12} md={6} container sx={{ position: "relative", p: { xs: "0 15px", md: "0 10px", xl: "0 15px" } }} >
                 <div className="musicImage">
-                  <img src={musicImg} alt='' />
+                  <img src={require("assets/images/albums/cd.png")} alt='' />
                   {/* <Image width={120} src={musicImg} /> */}
                 </div>
                 <div className="musicDesc">
@@ -208,25 +228,8 @@ export default function RootPlayer({ musicInfoList }) {
               </Grid>
             </Grid>
           </div>
-
-
-
         </div>
       </div>
-
-      {/* <ul className='musicList'>
-        {
-          musicInfo.map((item, index) => <li key={item.id} className={musicIndex == index ? "active" : ""} onClick={() => setMusicIndex(index)}>
-            <span>
-              <figure>{item.musicName}</figure>
-              <figcaption>{item.musicArt}</figcaption>
-            </span>
-            <span>{item.length}</span>
-          </li>)
-        }
-
-      </ul> */}
-
     </>
 
   )

@@ -1,8 +1,11 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import "./blog.scss"
 
 export default function Blog() {
     return (
-        <Outlet />
+        <div className='blog'>
+            <Outlet />
+        </div>
     )
 }

@@ -4,7 +4,6 @@ import quote_bg from "assets/images/quote_bg.jpg"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./rightSidebar.scss"
 
 const rightSidebarImg = [
   {

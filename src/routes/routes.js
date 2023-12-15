@@ -98,9 +98,63 @@ const routes = [
         children: [
             {
                 path: '/shortcodes_widgets/Typography',
-                name: 'trending',
-                til: 'trending',
+                name: 'Typography',
+                til: 'Typography',
                 element: Loadable(lazy(() => import('views/shortcodes_widgets/Typography'))),
+            },
+            {
+                path: '/shortcodes_widgets/Buttons',
+                name: 'Buttons',
+                til: 'Buttons',
+                element: Loadable(lazy(() => import('views/shortcodes_widgets/Buttons'))),
+            },
+            {
+                path: '/shortcodes_widgets/Teasers',
+                name: 'Teasers',
+                til: 'Teasers',
+                element: Loadable(lazy(() => import('views/shortcodes_widgets/Teasers'))),
+            },
+            {
+                path: '/shortcodes_widgets/Progress',
+                name: 'Progress',
+                til: 'Progress',
+                element: Loadable(lazy(() => import('views/shortcodes_widgets/Progress'))),
+            },
+            {
+                path: '/shortcodes_widgets/Tabs_Collapse',
+                name: 'Tabs_Collapse',
+                til: 'Tabs_Collapse',
+                element: Loadable(lazy(() => import('views/shortcodes_widgets/Tabs_Collapse'))),
+            },
+            {
+                path: '/shortcodes_widgets/Bootstrap_Elements',
+                name: 'Bootstrap_Elements',
+                til: 'Bootstrap_Elements',
+                element: Loadable(lazy(() => import('views/shortcodes_widgets/Bootstrap_Elements'))),
+            },
+            {
+                path: '/shortcodes_widgets/Widgets',
+                name: 'Widgets',
+                til: 'Widgets',
+                element: Loadable(lazy(() => import('views/shortcodes_widgets/Widgets'))),
+            },
+            {
+                path: '/shortcodes_widgets/Animation',
+                name: 'Animation',
+                til: 'Animation',
+                element: Loadable(lazy(() => import('views/shortcodes_widgets/Animation'))),
+            },
+            {
+                path: '/shortcodes_widgets/Template_Icons',
+                name: 'Template_Icons',
+                til: 'Template_Icons',
+                element: Loadable(lazy(() => import('views/shortcodes_widgets/Template_Icons'))),
+            },
+            {
+                path: '/shortcodes_widgets/Social_Icons',
+                name: 'Social_Icons',
+                til: 'Social_Icons',
+                element: Loadable(lazy(() => import('views/shortcodes_widgets/Social_Icons'))),
             },
         ]
     },

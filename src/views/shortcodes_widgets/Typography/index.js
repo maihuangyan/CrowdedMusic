@@ -12,7 +12,7 @@ export default function Typography() {
                         <div className="col-md-4 text-center text-md-right">
                             <ol className="breadcrumb greylinks">
                                 <li> <a href="/">
-                                    Homepage
+                                    Home
                                 </a> </li>
                                 <li> <a href="#">Features</a> </li>
                                 <li className="active">Typography</li>

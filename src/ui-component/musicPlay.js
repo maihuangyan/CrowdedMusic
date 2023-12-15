@@ -11,8 +11,13 @@ import {
 import { IconVolume } from "@tabler/icons-react";
 import 'assets/scss/musicPlay.scss';
 import musicUrl from 'assets/images/albums/01.jpg'
+import { useSelector } from 'react-redux';
+import useJwt from "utils/jwt/useJwt";
 
 export default function MusicPlay({ musicInfoList }) {
+
+
+  const user_id = useSelector((state) => state.users.user.id)
   const musicRef = useRef()
   const [musicInfo, setMusicInfo] = useState([])
   const [musicIndex, setMusicIndex] = useState(0)
@@ -31,22 +36,33 @@ export default function MusicPlay({ musicInfoList }) {
   const path = allSvgFilepaths[allSvgFilepaths.length - 1];//取最后一张图片地址
 
   useEffect(() => {
-    if (musicInfo.length === 0) return setMusicInfo([...musicInfoList])
+    if (musicInfoList) {
+      if (musicInfo.length === 0) return setMusicInfo([...musicInfoList])
+      setMusicImg("http://192.168.10.216:31839/assets/uploads/albums/168a143fc4d90c62cfa9f129c87d9732.png")
+      setMusicName(musicInfo[musicIndex].albumName)
+      setMusicArt(musicInfo[musicIndex].artistName)
+      setMusicSrc(musicInfo[musicIndex].remotePath)
+    }
 
-    setMusicImg(reqSvgs(musicInfo[musicIndex].musicImg))
-    setMusicName(musicInfo[musicIndex].musicName)
-    setMusicArt(musicInfo[musicIndex].musicArt)
-    setMusicSrc(musicInfo[musicIndex].musicSrc)
-  }, [musicInfo])
+  }, [musicInfo,musicInfoList])
+
 
   useEffect(() => {
     if (musicInfo.length == 0) return
 
-    const { musicName, musicArt, musicSrc } = musicInfo[musicIndex]
-    setMusicName(musicName)
-    setMusicArt(musicArt)
-    setMusicSrc(musicSrc)
+    // const { musicName, musicArt, musicSrc } = musicInfo[musicIndex]
+
+    setMusicName(musicInfo[musicIndex].albumName)
+    setMusicArt(musicInfo[musicIndex].artistName)
+    setMusicSrc(musicInfo[musicIndex].remotePath)
     setTimeout(playMusic, 500)
+
+    useJwt
+      .songPlay({ user_id, song_id: musicInfo[musicIndex].id })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch(error => console.log(error))
   }, [musicIndex])
 
   const songTimeFilter = (val) => {
@@ -63,7 +79,10 @@ export default function MusicPlay({ musicInfoList }) {
           musicRef.current.volume = 0.1
           setMusicVolume(0.1)
         }
-        musicRef.current.play()
+        if (musicRef.current.error == null) {
+          console.log("5555")
+          musicRef.current.play()
+        }
         watchMusicInfo()
         setMusicPlay(true)
       } else {
@@ -204,10 +223,10 @@ export default function MusicPlay({ musicInfoList }) {
 
         <ul className='musicList'>
           {
-            musicInfo.map((item, index) => <li key={item.id} className={musicIndex == index ? "active" : ""} onClick={() => setMusicIndex(index)}>
+            musicInfo.map((item, index) => <li key={index} className={musicIndex == index ? "active" : ""} onClick={() => setMusicIndex(index)}>
               <span>
-                <figure>{item.musicName}</figure>
-                <figcaption>{item.musicArt}</figcaption>
+                <figure>{item.albumName}</figure>
+                <figcaption>{item.artistName}</figcaption>
               </span>
               <span>{item.length}</span>
             </li>)

@@ -28,7 +28,7 @@ import imgUrl from "assets/images/login/cover-1.png"
 import { styled } from "@mui/material/styles";
 import { IconDotsCircleHorizontal, IconSearch, IconHeart, IconClockHour3, IconCalendar, IconPlayerPlay, IconDots, IconChevronRight } from "@tabler/icons-react"
 import { formatSongsDate } from "utils/common"
-import { addPlayList } from 'store/actions/playList';
+import { addPlayList ,openPlayList} from 'store/actions/playList';
 
 const CircleButton1 = styled(Button)(({ theme }) => ({
     borderRadius: "40px",
@@ -135,7 +135,7 @@ export default function PlayLst() {
                         }}>Create By topleftbooking - 4 songs, 15 min</Typography>
                         <Grid container>
                             <Grid item xs={12} sm={6} container alignItems="center">
-                                <CircleButton1 onClick={() => console.log("666")}>
+                                <CircleButton1 onClick={() => (dispatch(openPlayList(true)),dispatch(addPlayList(songs?.songs && songs.songs)))}>
                                     PLAY
                                 </CircleButton1>
                                 <IconDotsCircleHorizontal size={50} stroke={1} color='#fff' />
@@ -234,7 +234,7 @@ export default function PlayLst() {
                                                 }
                                             }}
                                         >
-                                            <TableCell align="center" onClick={() => dispatch(addPlayList({ id: item.song.id, musicName: item.song.albumName, musicArt: item.song.artistName, musicImg: "assets/images/albums/01.jpg", musicSrc: item.song.media_link }))}>
+                                            <TableCell align="center" onClick={() => dispatch(addPlayList(item))}>
                                                 <IconPlayerPlay className='player' size={25} stroke={2} color='#fff' style={{ cursor: "pointer", opacity: 0, verticalAlign: "middle" }} />
                                             </TableCell>
                                             <TableCell

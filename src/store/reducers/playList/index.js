@@ -1,11 +1,12 @@
 import { persistReducer } from "redux-persist"
 import storage from "redux-persist/lib/storage";
 
-import { SET_PLAYLIST, CLEAR_PLAYLIST , GET_PLAYLIST} from "../../actionType"
+import { SET_PLAYLIST, CLEAR_PLAYLIST, GET_PLAYLIST, OPEN_PLAYLIST } from "../../actionType"
 
 const initState = {
     playList: [],
-    myPlaylist:[]
+    myPlaylist: [],
+    openPlaylist: false,
 }
 
 const persistConfig = {
@@ -22,18 +23,30 @@ const playListReducer = (state = initState, action) => {
         case SET_PLAYLIST:
             let playList = [...state.playList]
             if (playList.length == 0) {
-                return { ...state, playList: [...state.playList, data] }
-            } else {
-                if (playList.filter((item) => item.id == data.id).length) {
-                    playList = playList.filter((item) => item.id != data.id)
-                    playList.unshift(data)
+                if (Object.prototype.toString.call(data) === '[object Array]') {
+                    return { ...state, playList: data }
                 } else {
-                    playList.push(data)
+                    return { ...state, playList: [...state.playList, data] }
                 }
-                return { ...state, playList: playList}
+            } else {
+                if (Object.prototype.toString.call(data) === '[object Array]') {
+                    return { ...state, playList: data }
+                } else {
+                    if (playList.filter((item) => item.id == data.id).length) {
+                        playList = playList.filter((item) => item.id != data.id)
+                        playList.unshift(data)
+                    } else {
+                        playList.unshift(data)
+                    }
+                    return { ...state, playList: playList }
+                }
+
             }
         case CLEAR_PLAYLIST:
             return { ...state, playList: [] }
+
+        case OPEN_PLAYLIST:
+            return { ...state, openPlaylist: data }
         default:
             return state
     }

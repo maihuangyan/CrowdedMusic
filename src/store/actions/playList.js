@@ -1,5 +1,5 @@
 import useJwt from "utils/jwt/useJwt";
-import { SET_PLAYLIST, CLEAR_PLAYLIST, GET_PLAYLIST } from "../actionType"
+import { SET_PLAYLIST, CLEAR_PLAYLIST, GET_PLAYLIST , OPEN_PLAYLIST} from "../actionType"
 
 // ** get user playList
 export const getPlayList = (data) => {
@@ -53,3 +53,12 @@ export const clearPlayList = () => {
   };
 };
 
+// ** open playList
+export const openPlayList = (open) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: OPEN_PLAYLIST,
+      data: open,
+    });
+  };
+};

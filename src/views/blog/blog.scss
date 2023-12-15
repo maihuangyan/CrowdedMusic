@@ -1,4 +1,4 @@
-.rightSidebar {
+.blog {
     font-size: 16px;
 
     .slide {
@@ -107,14 +107,14 @@
 }
 
 @media screen and (max-width:1200px) {
-    .rightSidebar .item-media-wrap{
+    .blog .item-media-wrap{
         height: 250px;
     }
 }
 
 
 @media screen and (max-width:990px) {
-    .rightSidebar .slide .context {
+    .blog .slide .context {
         position: static;
         background: #222;
         padding-top: 50px;
@@ -142,17 +142,17 @@
         }
     }
 
-    .rightSidebar .slide .slick-dots {
+    .blog .slide .slick-dots {
         bottom: 40px;
     }
 
-    .rightSidebar .item-media-wrap{
+    .blog .item-media-wrap{
         height: 260px;
     }
 }
 
 @media screen and (max-width:768px) {
-    .rightSidebar .item-media-wrap{
+    .blog .item-media-wrap{
         height: 300px;
     }
 }

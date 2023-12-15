@@ -18,8 +18,8 @@ const items = [
     },
     {
         label: 'TRENDING',
-        key: 'trendings/trending1',
-        path: 'trendings/trending',
+        key: 'trendings',
+        path: 'trendings',
         children: [
             {
                 type: 'group',

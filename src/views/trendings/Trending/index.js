@@ -168,7 +168,7 @@ export default function Trending() {
           data = res.data.data
           console.log(data)
           setTrendingSongs(data.top_songs.data)
-          setPopularEpisode(data.top_episodes.data)
+          setPopularEpisode(data.top_episode.data)
           hideProgress()
         } else {
           hideProgress()

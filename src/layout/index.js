@@ -28,11 +28,12 @@ const Layout = () => {
         // } else if (location.pathname === "/login" && token) {
         //     navigate('/home')
         // }
+        console.log(playList)
 
         if (location.pathname === "/") {
             navigate('/homepage')
         }
-    }, [location.pathname])
+    }, [location.pathname,playList])
 
     const isLogin = useMemo(() => {
         return pathArr.some((item) => item == location.pathname)

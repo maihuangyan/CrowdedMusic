@@ -122,6 +122,14 @@ export default class JwtService {
     return axios.get(this.jwtConfig.getTrendingEndpoint, ...args, headers);
   }
 
+  getCovers_and_reviews(...args) {
+    return axios.get(this.jwtConfig.getCovers_and_reviewsEndpoint, ...args, headers);
+  }
+
+  songPlay(...args) {
+    return axios.post(this.jwtConfig.songPlayEndpoint, ...args, headers);
+  }
+
 }
 
 
